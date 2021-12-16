@@ -43,7 +43,7 @@ def remove_background(joint_arr, ms, radius):
     m = ms.current_mesh()
     # Hausdorff Distance filter will store into the "quality" for each vertex of A the distance from the closest vertex of B; 
     # then use the conditional selection filter by testing against quality to remove background vertices.
-    ms.hausdorff_distance(sampledmesh = scan_mesh_id, targetmesh = joint_mesh_id, samplenum = sample_num, maxdist = radius)
+    ms.hausdorff_distance(sampledmesh = scan_mesh_id, targetmesh = joint_mesh_id, samplenum = sample_num, maxdist = pymeshlab.AbsoluteValue(radius))
     ms.conditional_vertex_selection(condselect = f"(q >= {radius})")
     ms.delete_selected_vertices()
     print(f'Keeping {m.vertex_number()} vertices')
